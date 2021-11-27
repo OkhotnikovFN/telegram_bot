@@ -51,12 +51,12 @@ async def choose_pizza(message: types.Message):
     """Обработка сообщения о выборе пиццы."""
     user_answer = message.text.lower()
     if user_answer not in AVAILABLE_PIZZAS:
-        keyboard = make_key_board(AVAILABLE_PIZZAS, '/stop')
+        keyboard = make_key_board(*AVAILABLE_PIZZAS, '/stop')
         await message.answer(CHOOSE_PIZZA_TEXT, reply_markup=keyboard)
         return
 
     set_chosen_pizza(message.from_user['id'], user_answer)
-    keyboard = make_key_board(AVAILABLE_PAYMENT_METHODS, '/stop')
+    keyboard = make_key_board(*AVAILABLE_PAYMENT_METHODS, '/stop')
     await message.answer(CHOOSE_PAYMENT_METHOD, reply_markup=keyboard)
 
 
