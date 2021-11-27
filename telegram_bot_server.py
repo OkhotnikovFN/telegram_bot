@@ -14,7 +14,7 @@ from telegram_filters import UserStateFilter
 
 API_TOKEN = os.getenv('TELEGRAM_BOT_TOKEN')
 
-logging.basicConfig(level=logging.DEBUG)
+logging.basicConfig(level=logging.INFO)
 
 bot = Bot(token=API_TOKEN)
 dp = Dispatcher(bot)
@@ -105,8 +105,7 @@ async def order_confirmation(message: types.Message):
 async def go_to_start_order(message: types.Message):
     """Обработка сообщения, когда пользователь находится вне нашего сюжета."""
     keyboard = make_key_board('/start', '/help')
-    await message.answer(f"Вы еще не начали заказ, если хотите заказать пиццу введите /start "
-                         f"для справки введите /help", reply_markup=keyboard)
+    await message.answer(COMMON_TEXT, reply_markup=keyboard)
 
 
 if __name__ == '__main__':
